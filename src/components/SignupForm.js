@@ -1,23 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react';
+import validation from './validation';
+import useForm from "./useForm";
 
-const SignupForm = () => {
+const SignupForm = ({submitForm}) => {
 
-            const [values, setValues] = useState({
-                fullname:"",
-                id:"",
-                email:"",
-                password:"",
-            });
-
-        const handleChange = (event) =>{
-            setValues({
-                ...values,
-                [event.target.name] : event.target.value, 
-            })
-        }
-        const handleFormSubmit = (event) =>{
-            event.preventDefault();
-        };
+    const {handleChange, handleFormSubmit, values, errors} = useForm(
+        submitForm
+        );
     return (
     <div className='container'>
         <div className='app-wrapper'>
@@ -34,6 +23,7 @@ const SignupForm = () => {
                     value={values.fullname}
                     onChange={handleChange}
                     />
+                    {errors.fullname && <p className="error">{errors.fullname}</p>}
                 </div>
                 <div className='name'>
                     <label className='label'>아이디</label>
@@ -44,6 +34,7 @@ const SignupForm = () => {
                     value={values.id} 
                     onChange={handleChange}
                     />
+                    {errors.id && <p className="error">{errors.id}</p>}
                 </div>
                 <div className='email'>
                     <label className='label'>이메일</label>
@@ -54,6 +45,7 @@ const SignupForm = () => {
                     value={values.email}
                     onChange={handleChange}
                     />
+                    {errors.email && <p className="error">{errors.email}</p>}
                 </div>
                 <div className='password'>
                     <label className='label'>비밀번호</label>
@@ -64,6 +56,7 @@ const SignupForm = () => {
                     value={values.password} 
                     onChange={handleChange}
                     />
+                    {errors.password && <p className="error">{errors.password}</p>}
                 </div>
                 <div>
                     <button className="submit" onClick={handleFormSubmit}>가입</button>
