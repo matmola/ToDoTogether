@@ -59,7 +59,7 @@ const SignupForm = ({submitForm}) => {
                     {errors.password && <p className="error">{errors.password}</p>}
                 </div>
                 <div>
-                    <button className="submit" onClick={handleFormSubmit}>가입</button>
+                    <button className="submit" onClick={handleFormSubmit}>Create!</button>
                 </div>
             </form>
         </div>
